@@ -1,0 +1,28 @@
+.c{
+    height:auto;
+    text-align:center;
+    width:100%;
+    background-color:#F8FAFC;
+    padding:20px 10%;
+}
+.c1{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    
+}
+.car{
+
+    padding:20px;
+    border-radius:10px;
+    width:25%;
+     background-color: #FFFFFF;;
+     transition:0.3 all ease;
+      box-shadow:0 4px 12px rgba(0,0,0,0.05);
+
+}
+.car:hover{
+    transform:translateY(-8px);
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
