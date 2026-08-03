@@ -6,6 +6,8 @@ import Feature from './Components/Feature.jsx'
 import Static from './Components/Static.jsx'
 import Faq from './Components/Faq.jsx'
 import Footer from './Components/Footer.jsx'
+import Login from './Components/Login.jsx'
+import Signup from './Components/Signup.jsx'
 import './App.css'
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <Static/>
       <Faq/>
       <Footer/>
+      <Login/>
+      <Signup/>
 
     </>
   )
