@@ -1,0 +1,18 @@
+.dash{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    height:auto;
+
+
+
+}
+.das1{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    flex-direction:column;
+
+}
