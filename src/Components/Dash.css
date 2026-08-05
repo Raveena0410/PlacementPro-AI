@@ -1,9 +1,16 @@
 .dash{
-    display:flex;
-    align-items:center;
-    justify-content:center;
     width:100%;
-    height:auto;
+    text-align:center;
+    background-color:#ffffff ;
+    border:1px solid black;
+
+}
+.das{
+    display:flex;
+   
+    width:100%;
+    min-height:90vh;
+    background-color:#f8fafc ;
 
 
 
@@ -11,8 +18,42 @@
 .das1{
     display:flex;
     align-items:center;
-    justify-content:center;
-    width:100%;
+    justify-content: flex-start;
+    width:25%;
     flex-direction:column;
+    border:1px solid black;
+    background-color: #1e293b ;
+    color:#ffffff ;
 
+
+
+}
+.das2{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:75%;
+    align-items:center;
+    border:1px solid black;
+}
+.side{
+    list-style-type:none;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    
+    padding: 0;
+    color: #ffffff ;
+
+}
+.side li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.side li:hover{
+    color: #334155 ;
 }
