@@ -1,7 +1,10 @@
 import React from 'react'
 import '../App.css'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="cont">
       <div className="logo">
@@ -23,8 +26,8 @@ const Navbar = () => {
 
       </div>
     <div className="log">
-      <button className="bt">Login</button>
-      <button className="btm">Signup</button>
+      <button className="bt" onClick={()=>navigate('/Login')}>Login</button>
+      <button className="btm" onClick={()=>navigate('/Signup')}>Signup</button>
     </div>
 
       
