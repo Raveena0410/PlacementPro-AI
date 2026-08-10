@@ -1,12 +1,14 @@
-const mongoose=require('mongoose');
-const { PiPlugsConnectedBold } = require('react-icons/pi');
-const connectb=()=>{
-    mongoose.connect(process.env.MONGO_URI)
-    .then(()=>{
-        console.log('mongodb connected"')
-    })
-    .catch((err)=> {
-        console.log(err);
-    })
-}
-module.exports=PiPlugsConnectedBold;
+const mongoose = require('mongoose');
+
+const connectDB = () => {
+    return mongoose.connect(process.env.MONGO_URI)
+        .then(() => {
+            console.log('MongoDB connected');
+        })
+        .catch((err) => {
+            console.log('MongoDB connection error:', err.message);
+            throw err;
+        });
+};
+
+module.exports = connectDB;

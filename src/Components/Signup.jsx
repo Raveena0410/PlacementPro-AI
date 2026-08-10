@@ -2,6 +2,19 @@ import React from 'react'
 import './Signup.css';
 
 const Signup = () => {
+    const[email,setemail]=useState();
+    const[password,setpassword]=useState();
+    const[confirmpassword,setconfirmpassword]=useState();
+    const handle=async(e)=>{
+        e.preventDefault();
+        if (confirmpassword!==password){
+            alert("passwords do not match");
+            return;
+
+
+        }
+        const res=await axios.post()
+    }
   return (
     <>
     <div className="main">
