@@ -1,22 +1,23 @@
-require('dotenv').config();
-
 const express = require('express');
-const cors = require('cors');
-
-const router = require('./route/router');
+const dotenv = require('dotenv');
 const connectDB = require('./config/config');
+
+dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
 
+// Routes
+const router = require('./route/router');
 app.use('/api', router);
 
+// Connect MongoDB and start server
 connectDB()
     .then(() => {
-        app.listen(5000, () => {
-            console.log('Server is running on port 5000');
+        app.listen(process.env.PORT, () => {
+            console.log(`Server started on port ${process.env.PORT}`);
         });
     })
     .catch(() => {
