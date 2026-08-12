@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import axios from 'axios';
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const handleLogin = async (e) => {
+    e.preventDefault();
+  try{
+    const res=await axios.post('http://localhost:5000/api/login',{
+      email,
+      password
+    })
+    
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
   return (
     <div className="login-page">
 
@@ -18,7 +35,7 @@ const Login = () => {
           Login to continue
         </p>
 
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleLogin}>
 
           <div className="login-field">
             <label htmlFor="email">Email</label>
@@ -26,6 +43,7 @@ const Login = () => {
               type="email"
               id="email"
               placeholder="Enter your email"
+              onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
 
@@ -35,6 +53,7 @@ const Login = () => {
               type="password"
               id="password"
               placeholder="Enter your password"
+              onChange={(e)=>setpassword(e.target.value)}
             />
           </div>
 
