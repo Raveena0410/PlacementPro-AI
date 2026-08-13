@@ -4,6 +4,7 @@ import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+    const[name,setName]=useState("");
     const[email,setemail]=useState();
     const[password,setpassword]=useState();
     const[confirmpassword,setconfirmpassword]=useState();
@@ -18,9 +19,13 @@ const Signup = () => {
         }
     try {
         const response = await axios.post('http://localhost:5000/api/signup', {
+            name,
             email,
             password
         });
+        if (res.data.success) {
+    localStorage.setItem("name", res.data.user.name);
+}
         navigate('/dashboard');
 
         console.log(response.data);
@@ -40,6 +45,10 @@ const Signup = () => {
         <p>Sign up to get started</p>
          
         <form onSubmit={handle}>
+             <div className="sign">
+            <label htmlFor="name">Name</label>
+            <input type="name" id="name" onChange={(e) => setName(e.target.value)} placeholder='Enter your email' />
+            </div>
             
             <div className="sign">
             <label htmlFor="email">Email</label>

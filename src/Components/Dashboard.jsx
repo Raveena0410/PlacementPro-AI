@@ -2,8 +2,9 @@ import React from 'react';
 import './Dash.css';
 
 const Dashboard = () => {
+    const name = localStorage.getItem("name");
     return (
-        <div className="dashboard">
+        <div className="d">
 
             <aside className="sidebar">
                 <h1>PlacePrep</h1>
@@ -20,7 +21,7 @@ const Dashboard = () => {
             <main className="content">
 
                 <div className="welcome">
-                    <h2>Welcome back! 👋</h2>
+                    <h2>Welcome back! {name} 👋</h2>
                     <p>Prepare smarter. Get ready for your dream placement.</p>
                 </div>
 

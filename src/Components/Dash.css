@@ -1,8 +1,8 @@
-* {
+ * {
     box-sizing: border-box;
 }
 
-.dashboard {
+.d {
     min-height: 100vh;
     display: flex;
     background: #f5f7fb;
@@ -116,4 +116,4 @@
 
 .action-card button:hover {
     opacity: 0.9;
-}
+} 

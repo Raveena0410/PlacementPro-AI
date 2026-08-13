@@ -3,12 +3,14 @@ import "./Login.css";
 import axios from 'axios';
 
 const Login = () => {
+  const[name,setName]=useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const handleLogin = async (e) => {
     e.preventDefault();
   try{
     const res=await axios.post('http://localhost:5000/api/login',{
+      name,
       email,
       password
     })
@@ -36,14 +38,23 @@ const Login = () => {
         </p>
 
         <form className="login-form" onSubmit={handleLogin}>
-
           <div className="login-field">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="name">Name</label>
             <input
               type="email"
               id="email"
               placeholder="Enter your email"
               onChange={(e)=>setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="login-field">
+            <label htmlFor="email">Email</label>
+            <input
+              type="name"
+              id="name"
+              placeholder="Enter your name"
+              onChange={(e)=>setName(e.target.value)}
             />
           </div>
 
