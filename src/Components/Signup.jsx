@@ -23,12 +23,16 @@ const Signup = () => {
             email,
             password
         });
-        if (res.data.success) {
-    localStorage.setItem("name", res.data.user.name);
-}
+        console.log(response.data);
+
+console.log("Name entered:", name)
+alert("Signup successful!");
+
+        localStorage.setItem("name", name);
+     
         navigate('/dashboard');
 
-        console.log(response.data);
+        
         alert("Signup successful!");
     } catch (error) {
         console.log(error);
@@ -47,7 +51,7 @@ const Signup = () => {
         <form onSubmit={handle}>
              <div className="sign">
             <label htmlFor="name">Name</label>
-            <input type="name" id="name" onChange={(e) => setName(e.target.value)} placeholder='Enter your email' />
+            <input type="name" id="name" onChange={(e) => setName(e.target.value)} placeholder='Enter your name' />
             </div>
             
             <div className="sign">

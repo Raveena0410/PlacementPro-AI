@@ -10,10 +10,11 @@ const Login = () => {
     e.preventDefault();
   try{
     const res=await axios.post('http://localhost:5000/api/login',{
-      name,
+      
       email,
       password
     })
+    localStorage.setItem("name","res.data.user.name")
     
   }
   catch(err){
@@ -38,15 +39,7 @@ const Login = () => {
         </p>
 
         <form className="login-form" onSubmit={handleLogin}>
-          <div className="login-field">
-            <label htmlFor="name">Name</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              onChange={(e)=>setEmail(e.target.value)}
-            />
-          </div>
+          
 
           <div className="login-field">
             <label htmlFor="email">Email</label>

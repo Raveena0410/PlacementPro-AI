@@ -2,13 +2,14 @@ const user=require('../models/model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const u=async(req,res)=>{
-const {email,password}=req.body;
+const {name,email,password}=req.body;
 const check=await user.findOne({email});
 if(check){
     return res.status(400).json({message:'user already exist'});
 }
 const hashpassword=await bcrypt.hash(password,10);
 const newuser=new user({
+    name,
     email,
     password:hashpassword
 })
@@ -26,11 +27,15 @@ const login=async(req,res)=>{
     if(!match){
         return res.status(401).json({message:'invalid password'})
     }
-    const token = jwt.sign(
-    { id: check._id },
-    process.env.JWT_SECRET,
-    { expiresIn: '1h' }
-);
+   return res.status(200).json({
+    message: 'user login succesfully',
+    token: token,
+    user: {
+        name: check.name,
+        email: check.email
+    }
+});
+
     return res.status(200).json({message:'user login succesfully', token:token})
 }
 module.exports = { u, login };
