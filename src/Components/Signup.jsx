@@ -67,7 +67,7 @@ alert("Signup successful!");
                 <input type="password" id="confirm-password" placeholder='Confirm your password' onChange={(e)=>setconfirmpassword(e.target.value)} />
             </div>
             <button className="b"type="submit">Sign Up</button>
-            <p> Already have an account? Login</p>
+            <p> Already have an account? <a href="/Login">Login</a></p>
         </form>
     </div>
     </>

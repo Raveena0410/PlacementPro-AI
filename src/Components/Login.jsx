@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./Login.css";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+   const navigate = useNavigate();
   const[name,setName]=useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
@@ -14,7 +16,11 @@ const Login = () => {
       email,
       password
     })
-    localStorage.setItem("name","res.data.user.name")
+     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("name",res.data.user.name);
+    alert("Login successful!");
+navigate("/dashboard");
+   
     
   }
   catch(err){
@@ -44,11 +50,11 @@ const Login = () => {
           <div className="login-field">
             <label htmlFor="email">Email</label>
             <input
-              type="name"
-              id="name"
-              placeholder="Enter your name"
-              onChange={(e)=>setName(e.target.value)}
-            />
+  type="email"
+  id="email"
+  placeholder="Enter your email"
+  onChange={(e) => setEmail(e.target.value)}
+/>
           </div>
 
           <div className="login-field">

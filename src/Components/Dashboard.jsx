@@ -1,8 +1,14 @@
 import React from 'react';
 import './Dash.css';
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const name = localStorage.getItem("name");
+    const navigate = useNavigate();
+    const handleLogout = () => {
+    localStorage.removeItem("name");
+    navigate("/login");
+};
     return (
         <div className="d">
 
@@ -15,6 +21,9 @@ const Dashboard = () => {
                     <p>Resume Mistakes</p>
                     <p>Interview Questions</p>
                     <p>Resources</p>
+                    <button className="logout-btn" onClick={handleLogout}>
+    Logout
+</button>
                 </div>
             </aside>
 

@@ -27,15 +27,19 @@ const login=async(req,res)=>{
     if(!match){
         return res.status(401).json({message:'invalid password'})
     }
-   return res.status(200).json({
-    message: 'user login succesfully',
-    token: token,
-    user: {
-        name: check.name,
-        email: check.email
-    }
-});
+   const token = jwt.sign(
+        { id: check._id },
+        process.env.JWT_SECRET,
+        { expiresIn: '1d' }
+    );
 
-    return res.status(200).json({message:'user login succesfully', token:token})
-}
+    return res.status(200).json({
+        message: 'user login successfully',
+        token: token,
+        user: {
+            name: check.name,
+            email: check.email
+        }
+    });
+};
 module.exports = { u, login };
