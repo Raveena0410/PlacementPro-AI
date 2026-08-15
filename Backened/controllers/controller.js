@@ -42,4 +42,12 @@ const login=async(req,res)=>{
         }
     });
 };
-module.exports = { u, login };
+const ats = async (req, res) => {
+    console.log(req.file);
+    console.log(req.body.jobDescription);
+
+    res.json({
+        message: "Resume received successfully"
+    });
+};
+module.exports = { u, login,ats };
