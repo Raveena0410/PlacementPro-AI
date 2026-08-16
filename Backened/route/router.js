@@ -5,4 +5,5 @@ const {u,login,ats}=require('../controllers/controller');
 router.post('/login',login);
 router.post('/signup',u)
 router.post('/ats', upload.single("resume"), ats);
+router.get('ats',GrUploadOption.single('resume'),ats);
 module.exports=router;
