@@ -1,6 +1,8 @@
 const user=require('../models/model');
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
+const pdfParse = require('pdf-parse');
+const fs = require('fs');
 const u=async(req,res)=>{
 const {name,email,password}=req.body;
 const check=await user.findOne({email});
@@ -43,11 +45,29 @@ const login=async(req,res)=>{
     });
 };
 const ats = async (req, res) => {
+    try{
     console.log(req.file);
     console.log(req.body.jobDescription);
+    const databuffer=fs.readFileSync(req.file.path)
+    const data=await pdfParse(databuffer)
+    const resume=data.text;
+    console.log("resume text:")
+    console.log(resume)
+    res.status(200).json({
+        message:"resume proceed successfully",
+        resume:resume
 
-    res.json({
-        message: "Resume received successfully"
-    });
+    })
+}
+catch(err){
+    console.log(err);
+    res.status(500).json({
+        message:"Error Proceeding Resume"
+    })
+}
+
+
+
+    
 };
 module.exports = { u, login,ats };
