@@ -1,5 +1,6 @@
 import {useState,React }from 'react'
 import axios from "axios";
+import  "./Ats.css"
 
 
 const ATSChecker = () => {
@@ -14,8 +15,9 @@ const ATSChecker = () => {
     formData.append("resume", resume);
     formData.append("jobDescription", jobDescription);
     try{
-        res=await axios("http://localhost:5000/api/ats"),
+        const res=await axios.post("http://localhost:5000/api/ats",
         formData
+        )
 
       }
       catch(err){
@@ -40,7 +42,7 @@ const ATSChecker = () => {
         <input  type="file" onChange={(e) => setResume(e.target.files[0])}
       accept=".pdf" placeholder='Enter Your Pdf'/>
         </div> 
-     </form>
+     
      <div className="job">
   <label>Job Description</label>
 
@@ -49,10 +51,12 @@ const ATSChecker = () => {
     onChange={(e) => setJobDescription(e.target.value)}
     placeholder="Paste the job description here..."
   />
+  </div>
   <button type="submit">Check Resume</button>
-</div>
 
+</form>
     </div>
+    
     </>
   )
 }

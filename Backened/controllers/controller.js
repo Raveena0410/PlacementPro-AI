@@ -50,6 +50,11 @@ const ats = async (req, res) => {
     console.log(req.body.jobDescription);
     const databuffer=fs.readFileSync(req.file.path)
     const data=await pdfParse(databuffer)
+    if (!req.file) {
+    return res.status(400).json({
+        message: "No resume file received"
+    });
+}
     const resume=data.text;
     console.log("resume text:")
     console.log(resume)
@@ -62,7 +67,7 @@ const ats = async (req, res) => {
 catch(err){
     console.log(err);
     res.status(500).json({
-        message:"Error Proceeding Resume"
+        message:err.message
     })
 }
 

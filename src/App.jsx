@@ -9,6 +9,8 @@ import Footer from './Components/Footer.jsx';
 import Login from './Components/Login.jsx';
 import Signup from './Components/Signup.jsx';
 import Dash from './Components/Dashboard.jsx';
+import Ats from './Components/Ats.jsx';
+
 
 import './App.css';
 
@@ -24,6 +26,7 @@ function App() {
                     element={
                         <>
                             <Nav />
+                            <Ats/>
                             <Hero />
                             <Feature />
                             <Static />
