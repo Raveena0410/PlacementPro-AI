@@ -9,6 +9,6 @@ const connectDB = () => {
             console.log('MongoDB connection error:', err.message);
             throw err;
         });
-};
+    };
 
 module.exports = connectDB;

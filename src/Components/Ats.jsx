@@ -21,6 +21,8 @@ const ATSChecker = () => {
 
       }
       catch(err){
+        console.log(err);
+        console.log("hello this is ats")
 
       }
     }
