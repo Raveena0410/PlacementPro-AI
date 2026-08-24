@@ -45,34 +45,48 @@ const login=async(req,res)=>{
     });
 };
 const ats = async (req, res) => {
-    try{
-    console.log(req.file);
-    console.log(req.body.jobDescription);
-    const databuffer=fs.readFileSync(req.file.path)
-    const data=await pdfParse(databuffer)
-    if (!req.file) {
-    return res.status(400).json({
-        message: "No resume file received"
-    });
-}
-    const resume=data.text;
-    console.log("resume text:")
-    console.log(resume)
-    res.status(200).json({
-        message:"resume proceed successfully",
-        resume:resume
+    try {
 
-    })
-}
-catch(err){
-    console.log(err);
-    res.status(500).json({
-        message:err.message
-    })
-}
+        if (!req.file) {
+            return res.status(400).json({
+                message: "No resume file received"
+            });
+        }
 
+        const jobDescription = req.body.jobDescription;
 
+        if (!jobDescription) {
+            return res.status(400).json({
+                message: "Job description is required"
+            });
+        }
 
-    
+        const databuffer = fs.readFileSync(req.file.path);
+
+        const data = await pdfParse(databuffer);
+
+        const resumeText = data.text;
+
+        console.log("Resume:");
+        console.log(resumeText);
+
+        console.log("Job Description:");
+        console.log(jobDescription);
+
+        // ATS analysis will go here
+
+        return res.status(200).json({
+            message: "Resume processed successfully",
+            resume: resumeText
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        return res.status(500).json({
+            message: err.message
+        });
+    }
 };
 module.exports = { u, login,ats };

@@ -13,5 +13,5 @@ router.post('/ats', upload.single('resume'), (req, res) => {
         body: req.body
     });
 });
-
+router.post("/ats", upload.single("resume"), ats);
 module.exports=router;
