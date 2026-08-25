@@ -8,6 +8,7 @@ const ATSChecker = () => {
     const [resume, setResume] = useState(null);
 
     const [jobDescription, setJobDescription] = useState("");
+    const [result, setResult] = useState("");
 
 
     const check = async (e) => {
@@ -62,8 +63,9 @@ const ATSChecker = () => {
 
 
             console.log("ATS RESULT:");
+console.log(res.data);
 
-            console.log(res.data);
+setResult(res.data.result);
 
 
         } catch (err) {
@@ -151,6 +153,12 @@ const ATSChecker = () => {
 
 
                 </form>
+                {result && (
+    <div>
+        <h2>ATS Result</h2>
+        <pre>{result}</pre>
+    </div>
+)}
 
             </div>
 
