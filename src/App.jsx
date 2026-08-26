@@ -26,7 +26,7 @@ function App() {
                     element={
                         <>
                             <Nav />
-                            <Ats/>
+                            
                             <Hero />
                             <Feature />
                             <Static />
@@ -53,6 +53,10 @@ function App() {
                     path="/dashboard"
                     element={<Dash />}
                 />
+                <Route
+    path="/ats"
+    element={<Ats />}
+/>
 
             </Routes>
 

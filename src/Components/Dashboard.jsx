@@ -1,5 +1,6 @@
 import React from 'react';
 import './Dash.css';
+import ATS from "./Ats.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
@@ -17,7 +18,7 @@ const Dashboard = () => {
 
                 <div className="side-menu">
                     <p>Dashboard</p>
-                    <p>ATS Checker</p>
+                    <p onClick={()=>navigate("/ATS")}>ATS Checker</p>
                     <p>Resume Mistakes</p>
                     <p>Interview Questions</p>
                     <p>Resources</p>
