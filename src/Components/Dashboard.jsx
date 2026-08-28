@@ -1,85 +1,63 @@
-import React from 'react';
-import './Dash.css';
-import ATS from "./Ats.jsx";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import "./Dash.css";
+
+import { Outlet, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-    const name = localStorage.getItem("name");
+
     const navigate = useNavigate();
+
     const handleLogout = () => {
-    localStorage.removeItem("name");
-    navigate("/login");
-};
+        localStorage.removeItem("name");
+        navigate("/login");
+    };
+
     return (
         <div className="d">
 
+            {/* SIDEBAR */}
             <aside className="sidebar">
+
                 <h1>PlacePrep</h1>
 
                 <div className="side-menu">
-                    <p>Dashboard</p>
-                    <p onClick={()=>navigate("/ATS")}>ATS Checker</p>
-                    <p>Resume Mistakes</p>
-                    <p>Interview Questions</p>
-                    <p>Resources</p>
-                    <button className="logout-btn" onClick={handleLogout}>
-    Logout
-</button>
+
+                    <p onClick={() => navigate("/dashboard")}>
+                        Dashboard
+                    </p>
+
+                    <p onClick={() => navigate("/dashboard/ATS")}>
+                        ATS Checker
+                    </p>
+
+                    <p>
+                        Resume Mistakes
+                    </p>
+
+                    <p>
+                        Interview Questions
+                    </p>
+
+                    <p>
+                        Resources
+                    </p>
+
+                    <button
+                        className="logout-btn"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+
                 </div>
+
             </aside>
 
+
+            {/* BIG CONTENT AREA */}
             <main className="content">
 
-                <div className="welcome">
-                    <h2>Welcome back! {name} 👋</h2>
-                    <p>Prepare smarter. Get ready for your dream placement.</p>
-                </div>
-
-                <div className="stats">
-
-                    <div className="card">
-                        <h3>Resume Score</h3>
-                        <h2>78%</h2>
-                        <p>Good progress</p>
-                    </div>
-
-                    <div className="card">
-                        <h3>Skills</h3>
-                        <h2>6/10</h2>
-                        <p>Keep learning</p>
-                    </div>
-
-                    <div className="card">
-                        <h3>Preparation</h3>
-                        <h2>42%</h2>
-                        <p>Keep going!</p>
-                    </div>
-
-                </div>
-
-                <h2 className="section-title">Quick Actions</h2>
-
-                <div className="actions">
-
-                    <div className="action-card">
-                        <h3>ATS Checker</h3>
-                        <p>Check how well your resume performs.</p>
-                        <button>Check Resume</button>
-                    </div>
-
-                    <div className="action-card">
-                        <h3>Interview Questions</h3>
-                        <p>Practice commonly asked interview questions.</p>
-                        <button>Start Practice</button>
-                    </div>
-
-                    <div className="action-card">
-                        <h3>Resume Mistakes</h3>
-                        <p>Find and fix common resume mistakes.</p>
-                        <button>Improve Resume</button>
-                    </div>
-
-                </div>
+                <Outlet />
 
             </main>
 

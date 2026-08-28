@@ -8,9 +8,10 @@ import Faq from './Components/Faq.jsx';
 import Footer from './Components/Footer.jsx';
 import Login from './Components/Login.jsx';
 import Signup from './Components/Signup.jsx';
-import Dash from './Components/Dashboard.jsx';
-import Ats from './Components/Ats.jsx';
 
+import Dash from './Components/Dashboard.jsx';
+import DashboardHome from './Components/DashboardHome.jsx';
+import Ats from './Components/Ats.jsx';
 
 import './App.css';
 
@@ -26,7 +27,6 @@ function App() {
                     element={
                         <>
                             <Nav />
-                            
                             <Hero />
                             <Feature />
                             <Static />
@@ -52,11 +52,21 @@ function App() {
                 <Route
                     path="/dashboard"
                     element={<Dash />}
-                />
-                <Route
-    path="/ats"
-    element={<Ats />}
-/>
+                >
+
+                    {/* Default Dashboard page */}
+                    <Route
+                        index
+                        element={<DashboardHome />}
+                    />
+
+                    {/* ATS page */}
+                    <Route
+                        path="ATS"
+                        element={<Ats />}
+                    />
+
+                </Route>
 
             </Routes>
 
