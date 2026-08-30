@@ -19,7 +19,7 @@ const ATSChecker = () => {
         // Check resume
         if (!resume) {
 
-            alert("Please upload your resume in this");
+            alert("Please upload your resume in this  and description also");
 
             return;
 
