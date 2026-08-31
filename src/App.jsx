@@ -10,7 +10,7 @@ import Login from './Components/Login.jsx';
 import Signup from './Components/Signup.jsx';
 
 import Dash from './Components/Dashboard.jsx';
-import DashboardHome from './Components/DashboardHome.jsx';
+
 import Ats from './Components/Ats.jsx';
 
 import './App.css';
@@ -55,11 +55,7 @@ function App() {
                 >
 
                     {/* Default Dashboard page */}
-                    <Route
-                        index
-                        element={<DashboardHome />}
-                    />
-
+                    
                     {/* ATS page */}
                     <Route
                         path="ATS"

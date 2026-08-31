@@ -37,3 +37,16 @@
     padding: 10px;
     border-radius: 8px;
 }
+.result-block {
+    margin-top: 30px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.result-block h2 {
+    margin-bottom: 15px;
+}

@@ -2,45 +2,50 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Ats.css";
 
-
 const ATSChecker = () => {
 
     const [resume, setResume] = useState(null);
-
     const [jobDescription, setJobDescription] = useState("");
     const [result, setResult] = useState("");
+    const [loading, setLoading] = useState(false);
 
 
     const check = async (e) => {
 
         e.preventDefault();
 
+        // -------------------------
+        // CHECK RESUME
+        // -------------------------
 
-        // Check resume
         if (!resume) {
 
-            alert("Please upload your resume in this  and description also");
+            alert("Please upload your PDF resume");
 
             return;
-
         }
 
 
-        // Check job description
+        // -------------------------
+        // CHECK JOB DESCRIPTION
+        // -------------------------
+
         if (!jobDescription.trim()) {
 
             alert("Please enter the job description");
 
             return;
-
         }
 
 
-        // Create FormData
+        // -------------------------
+        // CREATE FORMDATA
+        // -------------------------
+
         const formData = new FormData();
 
 
-        // Add PDF
+        // Add resume
         formData.append(
             "resume",
             resume
@@ -54,7 +59,39 @@ const ATSChecker = () => {
         );
 
 
+        // -------------------------
+        // CHECK WHAT IS BEING SENT
+        // -------------------------
+
+        console.log("========== ATS REQUEST ==========");
+
+        console.log("Resume:");
+        console.log(resume);
+
+        console.log("Job Description:");
+        console.log(jobDescription);
+
+
+        // Check FormData
+        console.log("========== FORMDATA ==========");
+
+        for (let [key, value] of formData.entries()) {
+
+            console.log(key, value);
+
+        }
+
+
+        // -------------------------
+        // SEND TO BACKEND
+        // -------------------------
+
         try {
+
+            setLoading(true);
+
+            setResult("");
+
 
             const res = await axios.post(
                 "http://localhost:5000/api/ats",
@@ -62,15 +99,45 @@ const ATSChecker = () => {
             );
 
 
-            console.log("ATS RESULT:");
-console.log(res.data);
+            // -------------------------
+            // BACKEND RESPONSE
+            // -------------------------
 
-setResult(res.data.result);
+            console.log("========== ATS RESPONSE ==========");
+
+            console.log(res.data);
+
+
+            setResult(res.data.result);
 
 
         } catch (err) {
 
+            console.log("========== ATS ERROR ==========");
+
             console.log(err);
+
+            if (err.response) {
+
+                console.log("Server response:");
+                console.log(err.response.data);
+
+                alert(
+                    err.response.data.message ||
+                    "ATS analysis failed"
+                );
+
+            } else {
+
+                alert(
+                    "Could not connect to the server"
+                );
+
+            }
+
+        } finally {
+
+            setLoading(false);
 
         }
 
@@ -79,92 +146,130 @@ setResult(res.data.result);
 
     return (
 
-        <>
+        <div className="h">
 
-            <div className="h">
+            <h1>
+                ATS Resume Checker
+            </h1>
+
+            <p>
+                Analyze your resume against a job
+                description and improve your chances.
+            </p>
+
+
+            <form
+                className="fo"
+                onSubmit={check}
+            >
+
+                {/* -------------------------
+                    RESUME
+                ------------------------- */}
 
                 <h2>
-                    ATS Resume Checker
-                </h2>
-
-                <h2>
-                    Analyze your resume against a job
-                </h2>
-
-                <h2>
-                    description and improve your chances.
+                    📄 Upload Resume
                 </h2>
 
 
-                <form
-                    className="fo"
-                    onSubmit={check}
+                <div className="f">
+
+                    <label>
+                        Upload your PDF resume
+                    </label>
+
+
+                    <input
+                        type="file"
+                        accept="application/pdf,.pdf"
+                        onChange={(e) => {
+
+                            const file =
+                                e.target.files[0];
+
+                            setResume(file);
+
+                            console.log(
+                                "Selected Resume:",
+                                file
+                            );
+
+                        }}
+                    />
+
+                </div>
+
+
+                {/* -------------------------
+                    JOB DESCRIPTION
+                ------------------------- */}
+
+                <div className="job">
+
+                    <label>
+                        Job Description
+                    </label>
+
+
+                    <textarea
+                        value={jobDescription}
+                        onChange={(e) => {
+
+                            setJobDescription(
+                                e.target.value
+                            );
+
+                        }}
+                        placeholder="Paste the job description here..."
+                        rows="10"
+                    />
+
+                </div>
+
+
+                {/* -------------------------
+                    BUTTON
+                ------------------------- */}
+
+                <button
+                    type="submit"
+                    disabled={loading}
                 >
 
+                    {loading
+                        ? "Analyzing..."
+                        : "Check Resume"
+                    }
+
+                </button>
+
+            </form>
+
+
+            {/* -------------------------
+                RESULT
+            ------------------------- */}
+
+            {result && (
+
+                <div className="result">
 
                     <h2>
-                        📄 Upload Resume
+                        ATS Result
                     </h2>
 
+                    <pre>
+                        {result}
+                    </pre>
 
-                    <div className="f">
+                </div>
 
-                        <label>
-                            Upload your PDF resume
-                        </label>
+            )}
 
-
-                        <input
-                            type="file"
-                            accept=".pdf"
-                            onChange={(e) =>
-                                setResume(
-                                    e.target.files[0]
-                                )
-                            }
-                        />
-
-                    </div>
-
-
-                    <div className="job">
-
-                        <label>
-                            Job Description
-                        </label>
-
-
-                        <textarea
-                            value={jobDescription}
-                            onChange={(e) =>
-                                setJobDescription(
-                                    e.target.value
-                                )
-                            }
-                            placeholder="Paste the job description here..."
-                        />
-
-                    </div>
-
-
-                    <button type="submit">
-                        Check Resume
-                    </button>
-
-
-                </form>
-                {result && (
-    <div>
-        <h2>ATS Result</h2>
-        <pre>{result}</pre>
-    </div>
-)}
-
-            </div>
-
-        </>
+        </div>
 
     );
+
 };
 
 
